@@ -15,20 +15,20 @@ ST-LaneNet is a dual-branch lane detection network operating at 368×640 resolut
   Branch 1 (BEV)   Branch 2 (front-view)
         │               │
    IPM warp (H)    Swin-Tiny (4 stages)
-   3×368×640       768×12×20
+   3×368×640           768×12×20
         │               │
-  SpatialPriorHead  loc_reduce 768→128
-   1×368×640        128×12×20
+SpatialPriorHead   loc_reduce 768→128
+   1×368×640           128×12×20
         │               │
    EdgeEncoder      bilinear upsample
-  [1ch Seq|3ch Par] 128×368×640
-   256×46×80             │
+  [1ch Seq|3ch Par]    128×368×640
+   256×46×80            │
         │               │
    CARAFE ×3            │
-   64×368×640            │
+   64×368×640           │
         │               │
    warp (H⁻¹)           │
-   64×368×640            │
+   64×368×640           │
         │               │
         └───────┬───────┘
                 │
@@ -159,9 +159,9 @@ where $B$ is drawn from a learnable table of size $(2M-1)\times(2M-1)$.
 ### Stage Hierarchy
 
 ```
-  Image 3×368×640
-        │
-        ▼
+          Image 3×368×640
+                 │
+                 ▼
   ┌──────────────────────────────┐
   │  Patch Partition             │
   │  4×4 tiles, embed C=96       │  →  96×92×160
@@ -236,23 +236,23 @@ The EdgeEncoder runs in parallel with the SpatialPriorHead. The binary mask is a
        STLaneNet_Seq              |        STLaneNet_Par
        ─────────────              |        ─────────────
                                   |
-   IPM top-down (3ch)             |    IPM top-down (3ch)
-           │                      |         ┌─────┴─────┐
-           ▼                      |         │           │
-   SpatialPriorHead               |   EdgeEncoder  SpatialPriorHead
-           │                      |   (3ch input)       │
-           ▼                      |         │      binary mask (1ch)
+   IPM top-down (3ch)             |         IPM top-down (3ch)
+           │                      |         ┌────────┴─────────┐
+           ▼                      |         │                  │
+   SpatialPriorHead               |   EdgeEncoder         SpatialPriorHead
+           │                      |   (3ch input)              │
+           ▼                      |         │             binary mask (1ch)
    binary mask (1ch)              |         └──────  ⊗  ──────┘
            │                      |                  │
            ▼                      |                  ▼
    EdgeEncoder (1ch input)        |               CARAFE
            │                      |                  │
            ▼                      |                  ▼
-        CARAFE                    |            warp (H⁻¹)
+        CARAFE                    |              warp (H⁻¹)
            │                      |                  │
            ▼                      |                  ▼
-      warp (H⁻¹)                  |        edge features
-           │                      |        (64×368×640)
+      warp (H⁻¹)                  |           edge features
+           │                      |            (64×368×640)
            ▼                      |
      edge features                |
      (64×368×640)                 |
