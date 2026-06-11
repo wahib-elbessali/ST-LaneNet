@@ -1,5 +1,19 @@
 # ST-LaneNet
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Accuracy](https://img.shields.io/badge/Accuracy-91.86%25-brightgreen)]()
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)]()
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)]()
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
+[![Marimo](https://img.shields.io/badge/Marimo-Interactive-purple.svg)](https://marimo.io/)
+[![Google Colab](https://img.shields.io/badge/Google-Colab-F9AB00?logo=googlecolab)](https://colab.research.google.com/)
+[![arXiv](https://img.shields.io/badge/arXiv-2404.xxxxx-b31b1b.svg)](https://doi.org/10.1186/s10033-024-00992-z)
+[![Paper](https://img.shields.io/badge/Paper-Published-brightblue.svg)](https://doi.org/10.1186/s10033-024-00992-z)
+[![FPS](https://img.shields.io/badge/FPS-162.9-green.svg)]()
+[![TPR](https://img.shields.io/badge/TPR-80.17%25-blue.svg)]()
+[![Dataset](https://img.shields.io/badge/Dataset-TuSimple-blueviolet.svg)](https://www.kaggle.com/datasets/manideep1108/tusimple)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Weights-20BEFF?logo=kaggle)](https://www.kaggle.com/datasets/youtikig/st-lanenet-weights-backup)
+
 Lane line detection combining a bird's-eye-view edge proposal network with Swin Transformer global context modelling on [TuSimple](https://www.kaggle.com/datasets/manideep1108/tusimple) highway images.
 
 Two variants — **sequential** and **parallel** — were implemented and ablated to resolve an architectural ambiguity in the original paper. The sequential variant is recommended: statistically equivalent accuracy, 25% faster.
